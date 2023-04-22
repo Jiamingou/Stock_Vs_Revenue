@@ -12,6 +12,25 @@ $$
 
 ---
 
+`代码使用介绍`
+
+运行一下 `main.py`文件就好了，还有里面除了_下划线开头的私有函数以外，其它函数也可以按规则进行调用，包括：
+
+```python
+# 1. 输入股票代码即可得到一个带有历史季度利润的dataframe
+get_quarterly_revenue(stock_ticker) 
+
+# 2. 输入股票代码即可得到一个使用我这种方法进行分析详细的dataframe
+get_company_analysis_df(stock_ticker)
+
+# 3. 输入股票代码即可得到该公司对应的盈利与股票增长的相关性
+get_relative_indicator(stock_ticker)
+
+```
+
+
+---
+
 **`粗略测试结果`**
 
 我使用了程序在每个行业中随机获取十支股票代码，然后测试他们的相关性均值，下面是结果：
