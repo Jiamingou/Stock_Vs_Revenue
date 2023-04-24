@@ -50,7 +50,9 @@ get_relative_indicator(stock_ticker)
 
 `打算`
 
-在每个行业里抽取更多不同的样本做一个Hypothesis Testing，看看是否某个行业盈利会与股票涨跌有相关性。
+1. 在每个行业里抽取更多不同的样本做一个Hypothesis Testing，看看是否某个行业盈利会与股票涨跌有相关性
+2. 或许考虑一下其它盈利指标，而不是单纯的Revenue
+3. 行业更为细分化，采取更多的样本
 
 ---
 
