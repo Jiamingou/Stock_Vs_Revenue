@@ -1,17 +1,12 @@
 import pandas as pd
 import json
 import os 
-
 import random
-from bs4 import BeautifulSoup
+import time
 
 import yfinance as yf
 import requests
-
-
-
-# 公司盈利数据链接
-# revenue_link = 'https://www.macrotrends.net/stocks/charts/AAPL/apple/revenue'
+from bs4 import BeautifulSoup
 
 
 
@@ -28,7 +23,7 @@ def sector_analysis(sector_name:str, sample_amount:int):
 
     # 获取每个公司的相关性指标
     for i in stock_tickers:
-        print(i)
+        print(f'正在获取"{i}"的数据..')
         indicator_value =  get_relative_indicator(i)
         # 如果这个公司没有相应的数据的话，进行下一个公司的查找
         if indicator_value is None:
@@ -59,6 +54,7 @@ def get_quarterly_revenue(stock_ticker:str):
     if not os.path.exists(revenue_file_buffer_path):
         # print(f'在服务器申请{stock_name}数据中..')
         # 爬虫：先分别获取股票的盈利增长数据，并存在本地的csv中 (本地里有的就不需要去获取了)
+        time.sleep(0.5)
         url = f'https://www.macrotrends.net/stocks/charts/{stock_ticker}/{stock_name}/revenue'
         source = requests.get(url).content
         soup = BeautifulSoup(source,'html.parser')
@@ -189,8 +185,7 @@ def _ticker_to_name(ticker:str):
     :param ticker: 公司对应的ticker
     :return: 返回用于爬虫的名字
     """
-    # Json文件源： https://www.macrotrends.net/stocks/charts/JNJ/johnson-johnson/revenue 内网页右上角点击搜索以后，控制台XHR捕抓到的 https://www.macrotrends.net/assets/php/ticker_search_list.php?_=1682026428533 项目，我这里直接把Preview复制下来供爬虫程序运用。
-    
+     
     current_dir = os.path.dirname(os.path.abspath(__file__)) # 获取该python文件在用户电脑的绝对位置
     ticker_search_list_path = os.path.join(current_dir,'pre_required','ticker_search_list.json')
 
